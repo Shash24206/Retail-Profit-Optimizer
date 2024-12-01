@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recommended Products</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            overflow: hidden;
+        }
+
+        /* The background with blur */
+        .background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('/static/3.jpg');
+            background-size: cover;
+            background-position: center;
+            filter: blur(10px); /* Apply blur */
+            z-index: -1;
+        }
+
+        .container {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: rgba(255, 255, 255, 0.85);
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            max-width: 900px;
+            width: 100%;
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: black;
+            font-weight: bold;
+        }
+
+        .table-container {
+            overflow-x: auto;
+            max-width: 100%;
+        }
+
+        table {
+            width: 100%;
+        }
+
+        @media (max-width: 768px) {
+            h2 {
+                font-size: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="background"></div>
+    <div class="container">
+        <h2>Recommended Products Within Budget</h2>
+        <div class="table-container">
+            <table class="table table-striped table-responsive">
+                <thead class="table-dark">
+                    <tr>
+                        <th>Product Line</th>
+                        <th>Total Quantity</th>
+                        <th>Total Cost (% of Budget)</th>
+                        <th>Total Profit (%)</th>
+                    </tr>
+                </thead>
+                <tbody id="table-body">
+                    {% for row in recommendations.itertuples() %}
+                    <tr class="table-row" style="display: none;">
+                        <td>{{ row._1 }}</td>
+                        <td>{{ row.total_quantity }}</td>
+                        <td>{{ row.total_cost }}%</td>
+                        <td>{{ row.total_profit_percentage }}%</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <h3>Total Profit Percentage: {{ total_profit_percentage }}%</h3>
+        <div class="text-center mt-4">
+            <a href="/" class="btn btn-primary btn-lg">Back</a>
+        </div>
+    </div>
+
+    <script>
+        // Function to reveal table rows with a 1 second delay
+        window.onload = function() {
+            const rows = document.querySelectorAll('.table-row');
+            rows.forEach((row, index) => {
+                setTimeout(() => {
+                    row.style.display = 'table-row'; // Make the row visible
+                }, index * 1000); // Delay each row by 1 second
+            });
+        };
+    </script>
+</body>
+</html>
