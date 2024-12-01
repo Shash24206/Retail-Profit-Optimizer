@@ -31,8 +31,8 @@
 
 ## **Project Structure**
 
-- **app.py:** Main Flask application file handling all routes and logic.
-- **supermarket_sales.csv:** Dataset used to train the machine learning model for product recommendations.
+- **optimiser.py:** Main Flask application file handling all routes and logic.
+- **supermarket_sales.csv:** Dataset used to train the machine learning model for product recommendations. Available on Kaggle  [https://www.kaggle.com/code/artaayaz/supermarketsalesanalysis/input](https://www.kaggle.com/code/artaayaz/supermarketsalesanalysis/input)
 - **templates/:** Folder containing HTML templates for the web application.
   - **login.html:** Login page for user authentication.
   - **index.html:** Dashboard for entering budget and priority settings.
